@@ -1,0 +1,159 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+}
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Dashboard</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-user-circle fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">26</div>
+                        <div>Funcionários Ativos</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">Ver Detalhes</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-green">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-heartbeat fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">245</div>
+                        <div>Consultas Marcadas</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">Ver Detalhes</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-yellow">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-address-card fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">124</div>
+                        <div>Pacientes</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">Ver Detalhes</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-exclamation fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">13</div>
+                        <div>Con. Canceladas</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">Ver Detalhes</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-md-12">
+        <div id="chart_div1" class="chart"></div>
+    </div>
+    <div class="col-md-12">
+        <div id="chart_div2" class="chart"></div>
+    </div>
+</div>
+@section scripts
+{
+    @*Google Charts*@
+    @Scripts.Render("~/bundles/googlechart")
+    <script type="text/javascript">
+        google.load("visualization", "1", { packages: ["corechart"] });
+        google.setOnLoadCallback(drawChart1);
+        function drawChart1() {
+            var data = google.visualization.arrayToDataTable([
+              ['Mês', 'Realizadas', 'Canceladas'],
+              ['Fevereiro', 1000, 400],
+              ['Março', 1170, 460],
+              ['Abril', 660, 1120],
+              ['Maio', 1030, 540]
+            ]);
+
+            var options = {
+                title: 'Consultas Mensais',
+                hAxis: { title: 'Mês', titleTextStyle: { color: 'red' } }
+            };
+
+            var chart = new google.visualization.ColumnChart(document.getElementById('chart_div1'));
+            chart.draw(data, options);
+        }
+
+        google.load("visualization", "1", { packages: ["corechart"] });
+        google.setOnLoadCallback(drawChart2);
+        function drawChart2() {
+            var data = google.visualization.arrayToDataTable([
+              ['Ano', 'Realizadas', 'Canceladas'],
+              ['2013', 1000, 400],
+              ['2014', 1170, 460],
+              ['2015', 660, 1120],
+              ['2016', 1030, 540],
+              ['2017', 2050, 270]
+            ]);
+
+            var options = {
+                title: 'Consultas Anuais',
+                hAxis: { title: 'Ano', titleTextStyle: { color: '#333' } },
+                vAxis: { minValue: 0 }
+            };
+
+            var chart = new google.visualization.AreaChart(document.getElementById('chart_div2'));
+            chart.draw(data, options);
+        }
+
+        $(window).resize(function () {
+            drawChart1();
+            drawChart2();
+        });
+    </script>
+}

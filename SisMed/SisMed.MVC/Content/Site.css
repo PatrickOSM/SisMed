@@ -1,0 +1,23 @@
+﻿.chart {
+    width: 100%;
+    min-height: 450px;
+}
+
+@media (min-width: 768px) {
+    .sidebar {
+        margin-top: 0;
+    }
+}
+
+.navbar-right {
+    margin-right: 0;
+}
+
+.navbar-brand {
+    padding: 10px 15px;
+}
+
+.navbar-brand>img {
+  height: 100%;
+  width: auto;
+}

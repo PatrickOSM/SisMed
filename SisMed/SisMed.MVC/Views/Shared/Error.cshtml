@@ -1,0 +1,9 @@
+﻿@{
+    ViewBag.Title = "Falha";
+}
+@model HandleErrorInfo
+<h1 class="text-danger">Falha: @Model.Exception.Message</h1>
+
+<h2 class="text-danger">Ocorreu um erro ao processar sua requisição.</h2>
+
+@Html.ActionLink("Voltar", @Model.ActionName, @Model.ControllerName)

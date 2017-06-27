@@ -1,0 +1,200 @@
+﻿@model SisMed.MVC.ViewModels.FuncionarioViewModel
+
+@{
+    ViewBag.Title = "Cadastrar";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Cadastrar Funcionário</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Preencha as informações abaixo
+                </div>
+                <div class="panel-body">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Matricula, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Matricula, new { htmlAttributes = new { @class = "form-control", maxlength = "10" } })
+                                @Html.ValidationMessageFor(model => model.Matricula, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Cpf, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Cpf, new { htmlAttributes = new { @class = "form-control cpf" } })
+                                @Html.ValidationMessageFor(model => model.Cpf, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Rg, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Rg, new { htmlAttributes = new { @class = "form-control rg" } })
+                                @Html.ValidationMessageFor(model => model.Rg, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.CargoId, htmlAttributes: new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.CargoId, (SelectList)ViewBag.CargoId, "", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.CargoId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.SexoId, htmlAttributes: new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.SexoId, (SelectList)ViewBag.SexoId, "", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.SexoId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Ativo, htmlAttributes: new { @class = "control-label" })
+                                <div class="checkbox">
+                                    @Html.EditorFor(model => model.Ativo, new { htmlAttributes = new { @class = "checkbox-inline", @style = "margin-left: 0px" } })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.EstadoId, htmlAttributes: new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.EstadoId, (SelectList)ViewBag.EstadoId, "", new { @class = "form-control", @id = "estadoDropDown", @onchange = "listaCidades()" })
+                                @Html.ValidationMessageFor(model => model.EstadoId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.CidadeId, htmlAttributes: new { @class = "control-label" })
+                                @if (ViewBag.CidadeId == null)
+                                {
+                                    @Html.DropDownListFor(model => model.CidadeId, Enumerable.Empty<SelectListItem>(), "", new { @class = "form-control", @id = "cidadeDropDown", @readonly = "readonly" })
+
+                                }
+                                else
+                                {
+                                    @Html.DropDownListFor(model => model.CidadeId, (SelectList)ViewBag.CidadeId, "", new { @class = "form-control", @id = "cidadeDropDown" })
+                                }
+                                @Html.ValidationMessageFor(model => model.CidadeId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Rua, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Rua, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Rua, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Bairro, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Bairro, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Bairro, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Cep, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Cep, new { htmlAttributes = new { @class = "form-control cep" } })
+                                @Html.ValidationMessageFor(model => model.Cep, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Telefone, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Telefone, new { htmlAttributes = new { @class = "form-control telefone" } })
+                                @Html.ValidationMessageFor(model => model.Telefone, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DataNascimento, htmlAttributes: new { @class = "control-label" })
+                                @Html.TextBoxFor(model => model.DataNascimento, "{0:dd/MM/yyyy}", new { @class = "form-control data" })
+                                @Html.ValidationMessageFor(model => model.DataNascimento, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default">Salvar</button>
+                        <button type="reset" class="btn btn-default">Limpar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+
+        function listaCidades() {
+            debugger;
+            var estadoId = $("#estadoDropDown").val();
+            $.ajax
+            ({
+                url: "@Url.Action("ListarCidades", "Funcionarios")",
+                type: 'POST',
+                datatype: 'application/json',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    estadoId: +estadoId
+                }),
+                success: function (result) {
+                    if (result.length <= 2) {
+                        //Desativa o dropdown de cidades e mostra um alerta
+                        $("#cidadeDropDown").html("");
+                        $("#cidadeDropDown").attr("readonly", true);
+                        alert("Nenhuma cidade cadastrada para este estado.");
+                    }
+                    else {
+                        //Popular o dropdown de cidades
+                        $("#cidadeDropDown").html("");
+                        $("#cidadeDropDown").attr("readonly", false);
+                        $.each($.parseJSON(result), function (i, cidade) {
+                            $("#cidadeDropDown").append($('<option></option>').val(cidade.CidadeId).html(cidade.Nome));
+                        });
+                    }
+
+                },
+                error: function () {
+                    alert("Falha na operação.");
+                },
+            });
+        }
+
+
+    </script>
+
+}

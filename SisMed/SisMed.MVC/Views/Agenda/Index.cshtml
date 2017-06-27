@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Agenda";
+}
+
+@section css
+{
+    @Styles.Render("~/Content/fullcalendar")
+}
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Agenda de Marcação de Consultas</h1>
+    </div>
+</div>
+
+<p>
+    <div id="agenda"></div>
+
+    @section scripts {
+        @Scripts.Render("~/bundles/moment")
+        @Scripts.Render("~/bundles/fullcalendar")
+
+        <script>
+            $(document).ready(function () {
+
+                $('#agenda').fullCalendar({
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'month,agendaWeek,agendaDay'
+                    },
+                    defaultView: 'agendaDay',
+                    editable: true,
+                    allDaySlot: false,
+                    selectable: true,
+                    slotMinutes: 15
+                });
+
+            });
+        </script>
+
+    }

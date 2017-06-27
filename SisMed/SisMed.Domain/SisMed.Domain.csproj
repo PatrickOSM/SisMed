@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7FA48AC8-CE28-4DB4-A09C-CFED588A3FBB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SisMed.Domain</RootNamespace>
+    <AssemblyName>SisMed.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entities\Agenda.cs" />
+    <Compile Include="Entities\Cargo.cs" />
+    <Compile Include="Entities\Cidade.cs" />
+    <Compile Include="Entities\Estado.cs" />
+    <Compile Include="Entities\FichaMedica.cs" />
+    <Compile Include="Entities\Funcionario.cs" />
+    <Compile Include="Entities\Paciente.cs" />
+    <Compile Include="Entities\Sexo.cs" />
+    <Compile Include="Entities\TipoSanguineo.cs" />
+    <Compile Include="Entities\Usuario.cs" />
+    <Compile Include="Interfaces\Repositories\IAgendaRepository.cs" />
+    <Compile Include="Interfaces\Repositories\ICargoRepository.cs" />
+    <Compile Include="Interfaces\Repositories\ICidadeRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IEstadoRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IFichaMedicaRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IFuncionarioRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IPacienteRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IRepositoryBase.cs" />
+    <Compile Include="Interfaces\Repositories\ISexoRepository.cs" />
+    <Compile Include="Interfaces\Repositories\ITipoSanguineoRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IUsuarioRepository.cs" />
+    <Compile Include="Interfaces\Services\IAgendaService.cs" />
+    <Compile Include="Interfaces\Services\ICidadeService.cs" />
+    <Compile Include="Interfaces\Services\IEstadoService.cs" />
+    <Compile Include="Interfaces\Services\IFichaMedicaService.cs" />
+    <Compile Include="Interfaces\Services\IFuncionarioService.cs" />
+    <Compile Include="Interfaces\Services\IPacienteService.cs" />
+    <Compile Include="Interfaces\Services\ISexoService.cs" />
+    <Compile Include="Interfaces\Services\ITipoSanguineoService.cs" />
+    <Compile Include="Interfaces\Services\ICargoService.cs" />
+    <Compile Include="Interfaces\Services\IServiceBase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AgendaService.cs" />
+    <Compile Include="Services\CargoService.cs" />
+    <Compile Include="Services\CidadeService.cs" />
+    <Compile Include="Services\EstadoService.cs" />
+    <Compile Include="Services\FuncionarioService.cs" />
+    <Compile Include="Services\FichaMedicaService.cs" />
+    <Compile Include="Services\PacienteService.cs" />
+    <Compile Include="Services\ServiceBase.cs" />
+    <Compile Include="Services\SexoService.cs" />
+    <Compile Include="Services\TipoSanguineoService.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

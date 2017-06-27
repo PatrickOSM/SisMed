@@ -1,0 +1,40 @@
+﻿@model SisMed.Infra.CrossCutting.Identity.Model.LoginViewModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "../Shared/_LayoutLogin.cshtml";
+}
+<div class="form">
+    <section id="loginForm">
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "login-form", role = "form" }))
+        {
+        @Html.AntiForgeryToken()
+            <div class="col-md-12">
+                <img src="~/Images/logo-sismed.png" alt="Logo SisMed" class="img-responsive" style="height: 100%; width: 100%;" />
+            </div>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "E-mail", @style = "width: 100%;" })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Senha", @style = "width: 100%;" })
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox-inline">
+                    @Html.CheckBoxFor(m => m.RememberMe)
+                    @Html.LabelFor(m => m.RememberMe)
+                </div>
+            </div>
+            <button type="submit">Login</button>
+            <p class="message">
+                @Html.ActionLink("Esqueceu sua senha?", "ForgotPassword")
+            </p>
+        }
+    </section>
+</div>

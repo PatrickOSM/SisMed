@@ -1,0 +1,107 @@
+﻿@model SisMed.MVC.ViewModels.FichaMedicaViewModel
+
+@{
+    ViewBag.Title = "Editar";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Editar Ficha Médica do Paciente</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Preencha as informações abaixo
+                </div>
+                <div class="panel-body">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.PacienteId, htmlAttributes: new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.PacienteId, (SelectList)ViewBag.PacienteId, "", new { @class = "form-control", @id = "dropdownPaciente", @onchange = "infoPaciente()" })
+                                @Html.ValidationMessageFor(model => model.PacienteId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DataConsulta, htmlAttributes: new { @class = "control-label" })
+                                @Html.TextBoxFor(model => model.DataConsulta, "{0:dd/MM/yyyy}", new { @class = "form-control data" })
+                                @Html.ValidationMessageFor(model => model.DataConsulta, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.MedicamentosReceitados, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.MedicamentosReceitados, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.MedicamentosReceitados, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div id="divPartialInfoPaciente">
+                        @Html.Partial("PartialInfoPaciente", Model.Paciente)
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ExamesSolicitados, htmlAttributes: new { @class = "control-label" })
+                                @Html.TextAreaFor(model => model.ExamesSolicitados, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ExamesSolicitados, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.SintomasPaciente, htmlAttributes: new { @class = "control-label" })
+                                @Html.TextAreaFor(model => model.SintomasPaciente, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.SintomasPaciente, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.AnotacoesMedicas, htmlAttributes: new { @class = "control-label" })
+                                @Html.TextAreaFor(model => model.AnotacoesMedicas, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.SintomasPaciente, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default">Alterar</button>
+                        <button type="reset" class="btn btn-default">Limpar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        function infoPaciente() {
+
+            debugger;
+            var pacienteId = $("#dropdownPaciente").val();
+
+            $.ajax({
+                url: "@Url.Action("InfoPaciente", "FichasMedicas")",
+                type: "get",
+                data:
+                {
+                    id: pacienteId
+                },
+                success: function (result) {
+                    $("#divPartialInfoPaciente").html(result);
+                }
+            });
+        }
+    </script>
+
+}

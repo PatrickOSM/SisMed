@@ -1,0 +1,55 @@
+﻿@model SisMed.MVC.ViewModels.PacienteViewModel
+    
+<div class="row">
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cpf, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Cpf, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.Cpf, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Sexo.Nome, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Sexo.Nome, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.Sexo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Alergias, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Alergias, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.Alergias, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(model => model.DataNascimento, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.DataNascimento, "{0:dd/MM/yyyy}", new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.DataNascimento, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(model => model.DoencasCronicas, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.DoencasCronicas, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.DoencasCronicas, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(model => model.MedicamentosContinuo, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.MedicamentosContinuo, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.MedicamentosContinuo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(model => model.TipoSanguineo.Nome, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.TipoSanguineo.Nome, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.TipoSanguineo.Nome, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
